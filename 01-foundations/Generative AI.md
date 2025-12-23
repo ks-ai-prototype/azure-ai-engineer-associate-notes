@@ -129,12 +129,13 @@ LLM outputs are:
 Write a professional email requesting one day of leave.
 
 **Output:**
+```
 Dear Manager,
 I would like to request leave for one day due to personal reasons.
 Please let me know if this works for you.
 
 Thank you.
-
+```
 ---
 
 ### Example 2: Code Generation

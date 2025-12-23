@@ -119,20 +119,113 @@ Final Output (text / code / JSON)
   - The **previous tokens**
   - The model’s **training** on large datasets.
 
-### 🎨 4.3 Visual Flow (Mermaid — GitHub renders this)
 
-### 🧭 4.4 Prompt-to-Output Flow (High-Level)
+### 4.3 Visual Flow – From Prompt to Output (Step-by-step)
 
-```flowchart LR
-U[User] --> P[Prompt (instruction & context)]
-P --> T[Tokenization]
-T --> M[LLM (Transformer)]
-M --> G[Token-by-token generation]
-G --> O[Output (Text / Code / JSON)]
+The diagram below shows how a user’s **prompt** flows through the model and becomes an **output**:
+
+```
+flowchart
+    A[User Prompt] --> B[Tokenization]
+    B --> C[LLM (Transformer Layers)]
+    C --> D[Next Token Prediction Loop]
+    D --> E[Final Output (Text / Code / JSON)]
 ```
 
+#### Step-by-step Explanation
+
+1. **User Prompt**  
+   - This is what the user types.  
+   - It can be a question, instruction, or command.  
+   - Example:  
+     ```txt
+     Explain Generative AI in simple terms.
+     ```
+
+2. **Tokenization**  
+   - The prompt text is broken into small pieces called **tokens**.  
+   - Tokens are not always full words; they can be word parts.  
+   - Conceptual example (not exact):  
+     - "Explain" → `Ex`, `plain`  
+     - "Generative" → `Gener`, `ative`  
+     - "AI" → `AI`  
+   - The model does not work with raw text, only with tokens (which are mapped to numbers).
+
+3. **LLM (Transformer Layers)**  
+   - The tokens are converted into numeric vectors (embeddings) and passed through multiple **transformer layers**.  
+   - At this stage, the model looks at:
+     - The entire prompt  
+     - All previous tokens  
+     - Patterns it learned during training  
+   - The model builds an internal understanding of *what you’re asking for* (e.g., an explanation, code, summary, etc.).
+
+4. **Next Token Prediction Loop**  
+   - The model now generates the answer **one token at a time**.  
+   - For example, it might start generating:  
+     - `Generative`  
+     - then `Generative AI`  
+     - then `Generative AI is`  
+     - then `Generative AI is a type of artificial intelligence...`  
+   - After generating each token, it uses:
+     - the prompt  
+     - all tokens generated so far  
+   - to decide the **next** token.  
+   - This loop continues until:
+     - a stop token is produced, or  
+     - a maximum length is reached.
+
+5. **Final Output (Text / Code / JSON)**  
+   - All the generated tokens are combined and converted back into readable text or code.  
+   - The user sees a complete answer, even though it was produced token-by-token.
 
 ---
+
+#### Interactive Example 1 – Explanation Prompt
+
+**Prompt**
+
+```txt
+Explain Generative AI in simple terms.
+```
+
+**Flow**
+
+- *User Prompt*: You send the above sentence.  
+- *Tokenization*: The sentence is split into tokens internally.  
+- *LLM Layers*: The model recognizes this as an explanation-style task.  
+- *Next Token Loop*: It starts with something like “Generative AI is…” and continues building the sentence.  
+- *Final Output*:  
+
+```txt
+Generative AI is a type of artificial intelligence that can create new content,
+such as text, images, or code, by learning patterns from existing data.
+```
+
+---
+
+#### Interactive Example 2 – Code Generation Prompt
+
+**Prompt**
+
+```txt
+Write a Python function that returns True if a number is even, otherwise False.
+```
+
+**Flow**
+
+- *User Prompt*: You ask for a Python function.  
+- *Tokenization*: Words like “Python”, “function”, “even” are turned into tokens.  
+- *LLM Layers*: The model identifies this as a code-generation task.  
+- *Next Token Loop*: It gradually produces `def`, `is_even`, parameters, and the function body.  
+- *Final Output*:  
+
+```python
+def is_even(n: int) -> bool:
+    return n % 2 == 0
+```
+
+> **Key takeaway:**  
+> What looks like a “single answer” to you is actually a **sequence of token predictions**, guided by your **prompt** and the model’s learned patterns.
 
 ## 5. Prompts
 

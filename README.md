@@ -1,2 +1,16 @@
-# azure-ai-engineer-associate-notes
-A curated knowledge base for Azure AI Engineer Associate preparation, combining exam-focused notes, lab insights, architecture patterns, and real-world enterprise use cases—including Azure OpenAI, Cognitive Services, and AI Search.
+# Azure AI Engineer Associate – Notes
+
+📌 Purpose:
+Personal notes for AI-102 exam + real-world Azure AI projects
+
+## Coverage
+- Cognitive Services
+- Azure OpenAI
+- Search
+- Security & Governance
+
+## Status
+- [x] Vision
+- [ ] Language
+- [ ] Search
+- [ ] OpenAI
